@@ -2,7 +2,7 @@
 
 #include "Weapons/ShooterProjectile.h"
 #include "Effects/ShooterExplosionEffect.h"
-#include "UE5ShooterGame/UE5ShooterGame.h"
+#include "UE5ShooterGame.h"
 #include "Particles/ParticleSystemComponent.h"
 
 

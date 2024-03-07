@@ -2,7 +2,7 @@
 
 
 #include "Effects/ShooterExplosionEffect.h"
-#include "UE5ShooterGame/UE5ShooterGame.h"
+#include "UE5ShooterGame.h"
 
 
 AShooterExplosionEffect::AShooterExplosionEffect(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)

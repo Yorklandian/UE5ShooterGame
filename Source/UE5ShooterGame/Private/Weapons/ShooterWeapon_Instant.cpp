@@ -5,7 +5,8 @@
 #include "Effects/ShooterImpactEffect.h"
 #include "Engine/DamageEvents.h"
 #include "Player/ShooterCharacter.h"
-#include "UE5ShooterGame/UE5ShooterGame.h"
+#include "UE5ShooterGame.h"
+DEFINE_LOG_CATEGORY(LogShooterWeapon);
 
 AShooterWeapon_Instant::AShooterWeapon_Instant(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
@@ -93,18 +94,18 @@ void AShooterWeapon_Instant::ServerNotifyHit_Implementation(const FHitResult& Im
 					}
 					else
 					{
-						//UE_LOG(LogShooterWeapon, Log, TEXT("%s Rejected client side hit of %s (outside bounding box tolerance)"), *GetNameSafe(this), *GetNameSafe(Impact.GetActor()));
+						UE_LOG(LogShooterWeapon, Log, TEXT("%s Rejected client side hit of %s (outside bounding box tolerance)"), *GetNameSafe(this), *GetNameSafe(Impact.GetActor()));
 					}
 				}
 			}
 		}
 		else if (ViewDotHitDir <= InstantConfig.AllowedViewDotHitDir)
 		{
-			//UE_LOG(LogShooterWeapon, Log, TEXT("%s Rejected client side hit of %s (facing too far from the hit direction)"), *GetNameSafe(this), *GetNameSafe(Impact.GetActor()));
+			UE_LOG(LogShooterWeapon, Log, TEXT("%s Rejected client side hit of %s (facing too far from the hit direction)"), *GetNameSafe(this), *GetNameSafe(Impact.GetActor()));
 		}
 		else
 		{
-			//UE_LOG(LogShooterWeapon, Log, TEXT("%s Rejected client side hit of %s"), *GetNameSafe(this), *GetNameSafe(Impact.GetActor()));
+			UE_LOG(LogShooterWeapon, Log, TEXT("%s Rejected client side hit of %s"), *GetNameSafe(this), *GetNameSafe(Impact.GetActor()));
 		}
 	}
 }

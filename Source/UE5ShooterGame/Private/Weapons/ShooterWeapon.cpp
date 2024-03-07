@@ -6,7 +6,7 @@
 // #include "Bots/ShooterAIController.h"
 #include "Player/ShooterCharacter.h"
 #include "Player/ShooterPlayerController.h"
-#include "UE5ShooterGame/UE5ShooterGame.h"
+#include "UE5ShooterGame.h"
 
 
 // Sets default values

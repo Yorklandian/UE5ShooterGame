@@ -6,7 +6,7 @@ public class UE5ShooterGame : ModuleRules
 {
 	public UE5ShooterGame(ReadOnlyTargetRules Target) : base(Target)
 	{
-		PrivatePCHHeaderFile = "UE5ShooterGame.h";
+		PrivatePCHHeaderFile = "Public/UE5ShooterGame.h";
 
 		PublicDefinitions.Add("HOST_ONLINE_GAMEMODE_ENABLED=" + HostOnlineGameEnabled);
 		PublicDefinitions.Add("JOIN_ONLINE_GAME_ENABLED=" + JoinOnlineGameEnabled);
