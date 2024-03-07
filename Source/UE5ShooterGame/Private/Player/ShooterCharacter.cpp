@@ -4,6 +4,7 @@
 #include "UE5ShooterGame/Public/Player/ShooterCharacter.h"
 
 
+
 // Sets default values
 AShooterCharacter::AShooterCharacter()
 {
@@ -29,4 +30,50 @@ void AShooterCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 }
+
+void AShooterCharacter::UpdateTeamColorAllMIDs()
+{
+}
+
+bool AShooterCharacter::CanFire() const
+{
+	return false;
+}
+
+bool AShooterCharacter::CanReload() const
+{
+	return false;
+}
+
+AShooterWeapon* AShooterCharacter::GetWeapon() const
+{
+	return nullptr;
+}
+
+bool AShooterCharacter::IsFirstPerson() const
+{
+	return false;
+}
+
+FName AShooterCharacter::GetWeaponAttachPoint() const
+{
+	return {};
+}
+
+USkeletalMeshComponent* AShooterCharacter::GetSpecifcPawnMesh(bool WantFirstPerson) const
+{
+	return nullptr;
+}
+
+USkeletalMeshComponent* AShooterCharacter::GetPawnMesh() const
+{
+	return nullptr;
+}
+
+bool AShooterCharacter::IsTargeting() const
+{
+	return false;
+}
+
+
 

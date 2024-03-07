@@ -3,12 +3,13 @@
 using UnrealBuildTool;
 using System.Collections.Generic;
 
-public class UE5ShooterGameTarget : TargetRules
+public class ShooterGameTarget : TargetRules
 {
-	public UE5ShooterGameTarget( TargetInfo Target) : base(Target)
+	public ShooterGameTarget(TargetInfo Target) : base(Target)
 	{
 		Type = TargetType.Game;
-		DefaultBuildSettings = BuildSettingsVersion.V2;
-		ExtraModuleNames.AddRange( new string[] { "UE5ShooterGame" } );
+		bUsesSteam = true;
+
+		ExtraModuleNames.Add("UE5ShooterGame");
 	}
 }

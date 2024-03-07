@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Weapons/ShooterWeapon.h"
 #include "ShooterCharacter.generated.h"
 
 UCLASS()
@@ -25,4 +26,29 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	void UpdateTeamColorAllMIDs();
+
+	bool CanFire() const;
+
+	bool CanReload() const;
+
+	AShooterWeapon* GetWeapon() const;
+
+	UFUNCTION(BlueprintCallable, Category = Mesh)
+	virtual bool IsFirstPerson() const;
+
+	FName GetWeaponAttachPoint() const;
+
+	/*
+	* Get either first or third person mesh.
+	*
+	* @param	WantFirstPerson		If true returns the first peron mesh, else returns the third
+	*/
+	USkeletalMeshComponent* GetSpecifcPawnMesh(bool WantFirstPerson) const;
+
+	/** get mesh component */
+	USkeletalMeshComponent* GetPawnMesh() const;
+
+	UFUNCTION(BlueprintCallable, Category = "Game|Weapon")
+	bool IsTargeting() const;
 };

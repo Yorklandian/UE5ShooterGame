@@ -6,18 +6,115 @@ public class UE5ShooterGame : ModuleRules
 {
 	public UE5ShooterGame(ReadOnlyTargetRules Target) : base(Target)
 	{
-		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
-	
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" });
+		PrivatePCHHeaderFile = "UE5ShooterGame.h";
 
-		PrivateDependencyModuleNames.AddRange(new string[] {  });
+		PublicDefinitions.Add("HOST_ONLINE_GAMEMODE_ENABLED=" + HostOnlineGameEnabled);
+		PublicDefinitions.Add("JOIN_ONLINE_GAME_ENABLED=" + JoinOnlineGameEnabled);
+		PublicDefinitions.Add("INVITE_ONLINE_GAME_ENABLED=" + InviteOnlineGameEnabled);
+		PublicDefinitions.Add("ONLINE_STORE_ENABLED=" + OnlineStoreEnabled);
 
-		// Uncomment if you are using Slate UI
-		// PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
+		PrivateIncludePaths.AddRange(
+			new string[] { 
+				"UE5ShooterGame/Private",
+				// "UE5ShooterGame/Private/UI",
+				// "UE5ShooterGame/Private/UI/Menu",
+				// "UE5ShooterGame/Private/UI/Style",
+				// "UE5ShooterGame/Private/UI/Widgets",
+            }
+		);
+
+        PublicDependencyModuleNames.AddRange(
+			new string[] {
+				"Core",
+				"CoreUObject",
+				"Engine",
+				"OnlineSubsystem",
+				"OnlineSubsystemUtils",
+				"AssetRegistry",
+				"NavigationSystem",
+				"AIModule",
+				"GameplayTasks",
+				"Gauntlet",
+			}
+		);
+
+        PrivateDependencyModuleNames.AddRange(
+			new string[] {
+				"InputCore",
+				"Slate",
+				"SlateCore",
+				// "UE5ShooterGameLoadingScreen",
+				"Json",
+				"ApplicationCore",
+				"ReplicationGraph",
+				"PakFile",
+				"RHI",
+				"PhysicsCore",
+				"GameplayCameras"
+			}
+		);
+
+		DynamicallyLoadedModuleNames.AddRange(
+			new string[] {
+				"OnlineSubsystemNull",
+				"NetworkReplayStreaming",
+				"NullNetworkReplayStreaming",
+				"HttpNetworkReplayStreaming",
+				"LocalFileNetworkReplayStreaming"
+			}
+		);
+
+		PrivateIncludePathModuleNames.AddRange(
+			new string[] {
+				"NetworkReplayStreaming"
+			}
+		);
+
+		if (Target.bBuildDeveloperTools || (Target.Configuration != UnrealTargetConfiguration.Shipping && Target.Configuration != UnrealTargetConfiguration.Test))
+        {
+            PrivateDependencyModuleNames.Add("GameplayDebugger");
+            PublicDefinitions.Add("WITH_GAMEPLAY_DEBUGGER=1");
+        }
+		else
+		{
+			PublicDefinitions.Add("WITH_GAMEPLAY_DEBUGGER=0");
+		}
 		
-		// Uncomment if you are using online features
-		// PrivateDependencyModuleNames.Add("OnlineSubsystem");
+		if (Target.Version.MajorVersion >= 5 || (Target.Version.MajorVersion == 4 && Target.Version.MinorVersion >= 27))
+		{
+			PrivateDependencyModuleNames.Add("GameplayCameras");
+		}
+	}
 
-		// To include OnlineSubsystemSteam, add it to the plugins section in your uproject file with the Enabled attribute set to true
+	protected virtual int HostOnlineGameEnabled 
+	{ 
+		get 
+		{ 
+			return 1; 
+		} 
+	}
+
+	protected virtual int JoinOnlineGameEnabled
+    {
+        get
+        {
+			return 1;
+        }
+    }
+
+	protected virtual int InviteOnlineGameEnabled
+    {
+		get
+        {
+			return 1;
+        }
+    }
+
+	protected virtual int OnlineStoreEnabled
+	{
+		get
+		{
+			return 1;
+		}
 	}
 }
